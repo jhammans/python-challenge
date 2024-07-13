@@ -7,7 +7,7 @@ inputPath = os.path.join("Resources", "election_data.csv")
 outputPath = os.path.join("analysis", "election_results.txt")
 
 # Open csv file
-with open(inputPath) as csvFile, open(outputPath, 'w') as txtFile:
+with open(inputPath) as csvFile, open(outputPath, "w") as txtFile:
 
     # CSV reader specifies delimiter and variable that holds contents
     csvReader = csv.DictReader(csvFile, delimiter=",")
@@ -26,24 +26,24 @@ with open(inputPath) as csvFile, open(outputPath, 'w') as txtFile:
         else:
             candidateVotes[row["Candidate"]] = 1
 
-    #Store results in a list so they can be printed to the terminal and a file at the same time
+    # Store results in a list so they can be printed to the terminal and a file at the same time
     results = []
     results.append("\nElection Results")
     results.append("-------------------------")
     results.append(f"Total votes: {totalVotes:,}")
     results.append("-------------------------")
-    #Calculate and print candidate vote percentages
+    # Calculate and print candidate vote percentages
     for candidate, votes in candidateVotes.items():
         percentage = (votes / totalVotes) * 100
         results.append(f"{candidate}: {percentage:.3f}% ({votes:,})")
-        
+
     # Find the winning candidate
     winner = max(candidateVotes.items(), key=lambda item: item[1])
     results.append("-------------------------")
-    results.append(f"Winner: {winner[0]}")       
+    results.append(f"Winner: {winner[0]}")
     results.append("-------------------------\n")
 
     # Print results to console and write to file
     for line in results:
         print(line)
-        txtFile.write(line + '\n')
+        txtFile.write(line + "\n")
