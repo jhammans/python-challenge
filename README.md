@@ -45,7 +45,7 @@ The script outputs the results to the console and writes to `analysis/budget_ana
 
 4. **View the results:**
     - The results will be printed to the console.
-    - The results will also be written to `Resources/budget_analysis.txt`.
+    - The results will also be written to `analysis/budget_analysis.txt`.
 
 ### Example
 
@@ -108,7 +108,7 @@ The script outputs the election results to the console and writes the results to
 
 4. **View the results:**
     - The results will be printed to the console.
-    - The results will also be written to `Resources/election_results.txt`.
+    - The results will also be written to `analysis/election_results.txt`.
 
 ### Example
 
