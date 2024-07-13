@@ -6,10 +6,10 @@ import csv
 inputPath = os.path.join("Resources", "budget_data.csv")
 
 # Open csv file
-with open(inputPath) as txtFile:
+with open(inputPath) as csvFile:
 
     # CSV reader specifies delimiter and variable that holds contents
-    csvReader = csv.reader(txtFile, delimiter=",")
+    csvReader = csv.reader(csvFile, delimiter=",")
 
     # Read the header row first
     csvHeader = next(csvReader)
