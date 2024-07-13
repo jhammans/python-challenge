@@ -2,11 +2,12 @@
 import os
 import csv
 
-# Define input file path
+# Define input and output file paths
 inputPath = os.path.join("Resources", "budget_data.csv")
+outputPath = os.path.join("analysis", "budget_analysis.txt")
 
 # Open csv file
-with open(inputPath) as csvFile:
+with open(inputPath) as csvFile, open(outputPath, "w") as txtFile:
 
     # CSV reader specifies delimiter and variable that holds contents
     csvReader = csv.reader(csvFile, delimiter=",")
@@ -47,30 +48,20 @@ with open(inputPath) as csvFile:
         # Save previous month's profit to compare to current month
         prevMonthProfit = curMonthProfit
 
-# Calculate average change
-avgChange = sum(changeList) / len(changeList) if changeList else 0
+    # Calculate average change
+    avgChange = sum(changeList) / len(changeList) if changeList else 0
 
-# Print summary to terminal
-print("\nFinancial Analysis")
-print("----------------------------")
-print(f"Total Months: {totalMonths}")
-print(f"Total: ${total:,.2f}")
-print(f"Average Change: ${avgChange:,.2f}")
-print(f"Greatest Increase in Profits: {maxChangeMonth} (${maxChange:,.2f})")
-print(f"Greatest Decrease in Profits: {minChangeMonth} (${minChange:,.2f})\n")
+    # Store results in a list so they can be printed to the terminal and a file at the same time
+    results = []
+    results.append("\nFinancial Analysis")
+    results.append("----------------------------")
+    results.append(f"Total Months: {totalMonths}")
+    results.append(f"Total: ${total:,.2f}")
+    results.append(f"Average Change: ${avgChange:,.2f}")
+    results.append(f"Greatest Increase in Profits: {maxChangeMonth} (${maxChange:,.2f})")
+    results.append(f"Greatest Decrease in Profits: {minChangeMonth} (${minChange:,.2f})\n")
 
-
-# Specify the file to write to
-outputPath = os.path.join('analysis', 'budget_analysis.txt')
-
-# Open the file using "write" mode. Specify the variable to hold the contents
-with open(outputPath, 'w') as export:
-
-    # Write the text file with summary results
-    export.write("Financial Analysis\n")
-    export.write("----------------------------\n")
-    export.write("Total Months: {}\n".format(totalMonths))
-    export.write("Total: ${:,.2f}\n".format(total))
-    export.write("Average Change: ${:,.2f}\n".format(avgChange))
-    export.write("Greatest Increase in Profits: {} (${:,.2f})\n".format(maxChangeMonth, maxChange))
-    export.write("Greatest Decrease in Profits: {} (${:,.2f})\n".format(minChangeMonth, minChange))
+    # Print results to terminal and write to file
+    for line in results:
+        print(line)
+        txtFile.write(line + "\n")

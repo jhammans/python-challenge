@@ -20,7 +20,7 @@ with open(inputPath) as csvFile, open(outputPath, "w") as txtFile:
     for row in csvReader:
         # Get total vote count
         totalVotes += 1
-        ##Get total vote count for each candidate
+        # Get total vote count for each candidate
         if row["Candidate"] in candidateVotes:
             candidateVotes[row["Candidate"]] += 1
         else:
@@ -32,6 +32,7 @@ with open(inputPath) as csvFile, open(outputPath, "w") as txtFile:
     results.append("-------------------------")
     results.append(f"Total votes: {totalVotes:,}")
     results.append("-------------------------")
+
     # Calculate and print candidate vote percentages
     for candidate, votes in candidateVotes.items():
         percentage = (votes / totalVotes) * 100
@@ -43,7 +44,7 @@ with open(inputPath) as csvFile, open(outputPath, "w") as txtFile:
     results.append(f"Winner: {winner[0]}")
     results.append("-------------------------\n")
 
-    # Print results to console and write to file
+    # Print results to terminal and write to file
     for line in results:
         print(line)
         txtFile.write(line + "\n")
