@@ -95,7 +95,7 @@ The script outputs the election results to the console and writes the results to
 1. **Clone the repository:**
     ```sh
     git clone https://github.com/jhammans/python-challenge.git
-    cd python-challenge
+    cd python-challenge/PyPoll
     ```
 
 2. **Prepare the input data:**
